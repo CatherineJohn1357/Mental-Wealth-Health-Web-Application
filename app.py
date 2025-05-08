@@ -143,5 +143,5 @@ if __name__ == '__main__':
     if not users:
         test_user = User(id="1", username="testuser", password=generate_password_hash("password"))
         users["testuser"] = test_user
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=10000)
 
