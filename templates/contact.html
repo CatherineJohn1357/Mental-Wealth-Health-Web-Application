@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Contact Counselor{% endblock %}
+
+{% block content %}
+  <h1>Contact Us</h1>
+  <form method="post" class="contact-form">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" required><br><br>
+
+      <label for="message">Message:</label>
+      <textarea name="message" id="message" rows="5" required></textarea><br><br>
+
+      
+      <input type="submit" value="Send">
+  </form>
+{% endblock %}
+

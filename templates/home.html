@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Mental Health Support{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>Welcome to Mental Health Support</h1>
+    <p style="text-align: center; font-size: 1.1rem; color: #444;">
+      Your calm, supportive space to reflect, track moods, and stay mindful.
+    </p>
+
+    <div class="home-grid">
+      <a href="/meditation" class="nav-card">🧘 Meditation</a>
+      <a href="/contact" class="nav-card">📞 Contact a Counselor</a>
+      <a href="/about" class="nav-card">ℹ️ About</a>
+      <a href="/reminders" class="nav-card">⏰ Your Reminders</a>
+      {% if current_user.is_authenticated %}
+        <a href="/logout" class="nav-card">🔓 Logout</a>
+      {% else %}
+        <a href="/login" class="nav-card">🔐 Login</a>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

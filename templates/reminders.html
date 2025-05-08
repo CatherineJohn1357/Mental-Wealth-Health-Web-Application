@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Your Reminders{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>Your Reminders</h1>
+
+    <form method="post" style="display: grid; gap: 10px;">
+      <input type="text" name="reminder" placeholder="Add a new reminder" required>
+      <input type="datetime-local" name="reminder_time" required>
+      <input type="submit" value="Add Reminder">
+    </form>
+
+    <ul style="margin-top: 20px;">
+      {% for reminder in reminders %}
+        <li>
+          {{ reminder.text }}
+          {% if reminder.time %}
+            <small style="color: #666;">(Due: {{ reminder.time }})</small>
+          {% endif %}
+          <a href="{{ url_for('edit_reminder', index=loop.index0) }}">Edit</a> |
+          <a href="{{ url_for('delete_reminder', index=loop.index0) }}" onclick="return confirm('Are you sure?');">Delete</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

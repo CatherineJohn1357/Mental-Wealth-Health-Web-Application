@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Mental Health App{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <nav role="navigation" aria-label="Main Navigation">
+    <ul>
+      <li><a href="{{ url_for('home') }}">🏠 Home</a></li>
+      <li><a href="{{ url_for('about') }}">ℹ️ About Us</a></li>
+      <li><a href="{{ url_for('meditation') }}">🧘 Meditation</a></li>
+      <li><a href="{{ url_for('contact') }}">📞 Contact</a></li>
+      <li><a href="{{ url_for('reminders') }}">⏰ Reminders</a></li>
+      <li><a href="{{ url_for('mood') }}">😊 Mood Tracker</a></li>
+      {% if current_user.is_authenticated %}
+        <li><a href="{{ url_for('logout') }}">🔓 Logout</a></li>
+      {% else %}
+        <li><a href="{{ url_for('login') }}">🔐 Login</a></li>
+        <li><a href="{{ url_for('register') }}">🆕 Register</a></li>
+      {% endif %}
+    </ul>
+
+    <form role="form" aria-label="Choose Language" style="margin-top: 10px; text-align: center;">
+      <label for="language">🌍 Language:</label>
+      <select id="language" name="language" aria-label="Select language">
+        <option value="en">English</option>
+        <option value="zh">Chinese</option>
+        <option value="hi">Hindi</option>
+        <option value="fr">French</option>
+      </select>
+    </form>
+  </nav>
+
+  <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+
+    <footer style="text-align: center; padding: 15px; font-size: 14px; color: #333; margin-top: 40px;">
+      <p>
+        <strong>Disclaimer:</strong> This website is intended for general mental wellness support only.
+        It is not a substitute for professional mental health services. If you are experiencing serious emotional distress or a crisis,
+        please consult a licensed mental health professional or contact emergency services.
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

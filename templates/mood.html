@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Mood Tracker{% endblock %}
+
+{% block content %}
+<h1>Track Your Mood</h1>
+
+<form method="post">
+    <label for="date">Date:</label>
+    <input type="date" name="date" required><br><br>
+
+    <label for="mood">Mood:</label>
+    <select name="mood" required>
+        <option value="Happy">Happy</option>
+        <option value="Neutral">Neutral</option>
+        <option value="Sad">Sad</option>
+        <option value="Anxious">Anxious</option>
+        <option value="Angry">Angry</option>
+    </select><br><br>
+
+    <input type="submit" value="Add Mood Entry">
+</form>
+
+<h2>Your Mood Log</h2>
+<ul>
+    {% for entry in moods %}
+        <li>{{ entry.date }} - {{ entry.mood }}</li>
+    {% endfor %}
+</ul>
+<div style="margin-top: 30px; text-align: center;">
+    <a href="/" class="nav-card">🏠 Back to Home</a>
+  </div>
+</div>
+{% endblock %}
